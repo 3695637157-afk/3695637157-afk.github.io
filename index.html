@@ -28,9 +28,9 @@
           throw new Error("当前浏览器不支持页面解压，请更新浏览器。");
         }
         const paths = [
-          "./payload-01.txt?v=20261021",
-          "./payload-02.txt?v=20261021",
-          "./payload-03.txt?v=20261021"
+          "https://cdn.jsdelivr.net/gh/3695637157-afk/3695637157-afk.github.io@main/payload-01.txt?v=20261021",
+          "https://cdn.jsdelivr.net/gh/3695637157-afk/3695637157-afk.github.io@main/payload-02.txt?v=20261021",
+          "https://cdn.jsdelivr.net/gh/3695637157-afk/3695637157-afk.github.io@main/payload-03.txt?v=20261021"
         ];
         const parts = await Promise.all(paths.map(async (path) => {
           const response = await fetch(path, { cache: "no-store" });
