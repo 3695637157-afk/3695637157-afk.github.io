@@ -12,6 +12,7 @@
     h1{margin:0;font-size:clamp(2rem,8vw,4rem);line-height:1.02}
     p{margin:20px 0 0;color:#5b675f;line-height:1.7}
     a{color:#c8372f}
+    .mirror-frame{display:block;width:100vw;height:100dvh;border:0}
   </style>
 </head>
 <body>
@@ -46,6 +47,18 @@
           .stream()
           .pipeThrough(new DecompressionStream("gzip"));
         const html = await new Response(stream).text();
+        if (["raw.githack.com", "rawcdn.githack.com"].includes(location.hostname)) {
+          document.documentElement.style.overflow = "hidden";
+          document.body.style.display = "block";
+          document.body.style.overflow = "hidden";
+          document.body.innerHTML = "";
+          const frame = document.createElement("iframe");
+          frame.className = "mirror-frame";
+          frame.title = "大学物理竞赛真题贯通讲义";
+          frame.srcdoc = html;
+          document.body.append(frame);
+          return;
+        }
         document.open();
         document.write(html);
         document.close();
